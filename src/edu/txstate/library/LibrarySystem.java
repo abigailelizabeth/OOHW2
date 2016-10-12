@@ -18,7 +18,12 @@ public class LibrarySystem {
 		System.out.println("Yo you made a librarySystem let me test pushing and updating through intellij");
 		return instance;
 	}
-	
+	public DocumentDirectory getDocumentDirectory(){
+		return DocumentDirectory.getInstance();
+	}
+	public void addDocument(Document doc){
+		DocumentDirectory.addDocument(doc);
+	}
 	public void saveData(){
 		// save the data
 	}

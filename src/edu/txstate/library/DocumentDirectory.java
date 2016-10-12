@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class DocumentDirectory{
 	private static DocumentDirectory instance = new DocumentDirectory();
-	private ArrayList<Document> documents = new ArrayList<Document>();
+	private static ArrayList<Document> documents = new ArrayList<Document>();
 	
 	private DocumentDirectory(){
 		System.out.println("I am a DocumentDirectory Instance. ");
@@ -16,8 +16,8 @@ public class DocumentDirectory{
 		return instance;
 	}
 	
-	public boolean addDocument(Document doc){
-		return documents.add(doc);
+	public static void addDocument(Document doc){
+		documents.add(doc);
 	}
 	public boolean removeDocument(Document doc){
 		return documents.remove(doc);
