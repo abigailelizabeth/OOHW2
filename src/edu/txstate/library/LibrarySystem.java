@@ -9,9 +9,9 @@ public class LibrarySystem {
 	
 	private LibrarySystem(){
 		 //ensure class has single instance
-		mDocumentDirectory = DocumentDirectory.getInstance();
-		mUserDirectory = UserDirectory.getInstance();
-		mLoanTransactionDirectory = LoanTransactionDirectory.getInstance();
+//		mDocumentDirectory = DocumentDirectory.getInstance();
+//		mUserDirectory = UserDirectory.getInstance();
+//		mLoanTransactionDirectory = LoanTransactionDirectory.getInstance();
 	}
 	
 	public static LibrarySystem getInstance(){
