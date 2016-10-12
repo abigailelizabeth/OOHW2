@@ -1,7 +1,7 @@
 package edu.txstate.library;
 
 public class Author {
-	private static int counter;
+	private static int counter = 0;
 	
 	public Author(){
 		counter++;

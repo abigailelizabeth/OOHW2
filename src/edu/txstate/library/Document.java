@@ -1,15 +1,26 @@
 package edu.txstate.library;
 
 public abstract class Document {
+	
 	private String mTitle;
 	private String mPublishDate;
 	private String mPublisher;
 	private int mNumberOfCopies;
-	
+	private static int counter = 0;
 	
 	// Constructor
 	public Document(){
-	
+		mTitle = "";
+		mPublishDate = "";
+		mPublisher = "";
+		mNumberOfCopies = 0;
+		counter++;
+	}
+	public Document(String title, String publishDate, String publisher, int num){
+		this.setTitle(title);
+		this.setPublishDate(publishDate);
+		this.setPublisher(publisher);
+		this.setNumberOfCopies(num);
 	}
 	
 	// All the Setters
@@ -41,6 +52,9 @@ public abstract class Document {
 	}
 	public int getNumberOfAuthors(){
 		return Author.getNumOfInstances();
+	}
+	public static int getNumOfInstances(){
+		return counter;
 	}
 	
 	// update mNumberOfCopies

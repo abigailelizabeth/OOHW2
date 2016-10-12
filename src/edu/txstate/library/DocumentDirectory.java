@@ -1,12 +1,11 @@
 package edu.txstate.library;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class DocumentDirectory<E> implements Collection<E> {
+public class DocumentDirectory{
 	private static DocumentDirectory instance = new DocumentDirectory();
-	private Collection<Document> documents = new ArrayList<Document>();
+	private ArrayList<Document> documents = new ArrayList<Document>();
 	
 	private DocumentDirectory(){
 		System.out.println("I am a DocumentDirectory Instance. ");
@@ -17,85 +16,30 @@ public class DocumentDirectory<E> implements Collection<E> {
 		return instance;
 	}
 	
-	
-	// methods from Collection
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean addDocument(Document doc){
+		return documents.add(doc);
 	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeDocument(Document doc){
+		return documents.remove(doc);
 	}
-
-	@Override
-	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+	public Author findAuthorWithQuery(String query){
+		
+		// do stuff with query to find author
+		Author placeHolder = new Author();
+		return placeHolder;
 	}
-
-	@Override
-	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean add(E e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
+	public Document findDocumentWithQuery(String query){
+		
+		// do stuff with query to find document
+		Document placeHolder = documents.get(0);
+		return placeHolder;
 		
 	}
+	public void saveData(){
+		//do stuff with the file name to write to the file in order to save all the date
+		
+	}
+
+
 
 }
