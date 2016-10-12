@@ -13,7 +13,7 @@ public class DocumentDirectory<E> implements Collection<E> {
 		// ensure class has one instance
 	}
 	
-	public static DocumentDirectory<Document> getInstance(){
+	public static DocumentDirectory getInstance(){
 		return instance;
 	}
 	
