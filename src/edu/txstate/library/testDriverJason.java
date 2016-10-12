@@ -1,12 +1,14 @@
 package edu.txstate.library;
+import java.util.Scanner;
 
 public class testDriverJason {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		System.out.println("TESTING");
+		LibrarySystem alkek = LibrarySystem.getInstance();
+		
+		Scanner input = new Scanner(System.in);
 
 	}
 
