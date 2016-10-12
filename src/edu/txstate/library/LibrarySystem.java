@@ -1,7 +1,7 @@
 package edu.txstate.library;
 
 public class LibrarySystem {
-	private DocumentDirectory<Document> mDocumentDirectory;
+	private DocumentDirectory mDocumentDirectory;
 	private UserDirectory<User> mUserDirectory;
 	private LoanTransactionDirectory<LoanTransaction> mLoanTransactionDirectory;
 	private static LibrarySystem instance = new LibrarySystem();
@@ -9,7 +9,7 @@ public class LibrarySystem {
 	
 	private LibrarySystem(){
 		 //ensure class has single instance
-//		mDocumentDirectory = DocumentDirectory.getInstance();
+		mDocumentDirectory = DocumentDirectory.getInstance();
 //		mUserDirectory = UserDirectory.getInstance();
 //		mLoanTransactionDirectory = LoanTransactionDirectory.getInstance();
 	}

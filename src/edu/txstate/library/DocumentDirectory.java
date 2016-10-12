@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 public class DocumentDirectory<E> implements Collection<E> {
-	private static DocumentDirectory<Document> instance = new DocumentDirectory<Document>();
+	private static DocumentDirectory instance = new DocumentDirectory();
 	private Collection<Document> documents = new ArrayList<Document>();
 	
 	private DocumentDirectory(){
