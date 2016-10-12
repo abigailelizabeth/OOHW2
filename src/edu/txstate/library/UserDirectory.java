@@ -11,6 +11,7 @@ public class UserDirectory<E>{
 	Iterator<User> usr = users.iterator();
 	
 	private UserDirectory (){
+		System.out.println("I am a UserDirectory Instance.");
 		//ensure class has one instance
 	}
 	
@@ -18,4 +19,21 @@ public class UserDirectory<E>{
 		return instance;
 	}
 	
+	public boolean addUser(User e){
+		users.add(e);
+		return true;
+	}
+	
+	public User findUserById(String id){
+		User notFoundUser = users.get(0);
+		
+		while(usr.hasNext()){
+			User user = (User)usr.next();
+			if (user.getUserId().equals(id)){
+				System.out.println("User found!\nName: " + user.getFullName() + "\n");
+				notFoundUser = user;
+			}
+		}
+		return notFoundUser;
+	}
 }
