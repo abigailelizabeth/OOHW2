@@ -12,16 +12,22 @@ public class Person {
 		this.mLastName = "";
 	}
 	
-	public void setFirstName(){
-		
+	public Person(String firstName, String middleName, String lastName){
+		this.setFirstName(firstName);
+		this.setMiddleName(middleName);
+		this.setLastName(lastName);
 	}
 	
-	public void setMiddleName(){
-		
+	public void setFirstName(String firstName){
+		this.mFirstName = firstName;
 	}
 	
-	public void setLastName(){
-		
+	public void setMiddleName(String middleName){
+		this.mMiddleName = middleName;
+	}
+	
+	public void setLastName(String lastName){
+		this.mLastName = lastName;		
 	}
 	
 	public String getFirstName(){
