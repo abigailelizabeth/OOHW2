@@ -21,7 +21,7 @@ public class UserDirectory<E>{
 	
 	public boolean addUser(User e){
 		users.add(e);
-		return true;
+		return true; //Fix this
 	}
 	
 	public User findUserById(String id){
