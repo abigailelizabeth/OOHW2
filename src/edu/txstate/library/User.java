@@ -12,7 +12,6 @@ public abstract class User extends Person{
 	}
 	
 	public int getNumberBorrowed(){
-		
 		return 0;
 	}
 	

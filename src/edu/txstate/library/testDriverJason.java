@@ -10,6 +10,8 @@ public class testDriverJason {
 		
 		Scanner input = new Scanner(System.in);
 
+		StudentUser user1 = new StudentUser();
+		alkek.addUser(user1);
 	}
 
 }

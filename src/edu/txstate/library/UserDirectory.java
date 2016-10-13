@@ -3,10 +3,10 @@ package edu.txstate.library;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class UserDirectory<E>{
+public class UserDirectory{
 	//private static final String SAVE_FILENAME = "user_directory.txt";
-	private static UserDirectory<User> instance = new UserDirectory<User>();
-	private ArrayList<User> users = new ArrayList<User>();
+	private static UserDirectory instance = new UserDirectory();
+	private static ArrayList<User> users = new ArrayList<User>();
 	
 	Iterator<User> usr = users.iterator();
 	
@@ -15,13 +15,12 @@ public class UserDirectory<E>{
 		//ensure class has one instance
 	}
 	
-	public static UserDirectory<User> getInstance(){
+	public static UserDirectory getInstance(){
 		return instance;
 	}
 	
-	public boolean addUser(User e){
+	public static void addUser(User e){
 		users.add(e);
-		return true; //Fix this
 	}
 	
 	public User findUserById(String id){
