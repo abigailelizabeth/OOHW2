@@ -8,7 +8,7 @@ public class UserDirectory{
 	private static UserDirectory instance = new UserDirectory();
 	private static ArrayList<User> users = new ArrayList<User>();
 	
-	Iterator<User> usr = users.iterator();
+//	Iterator<User> usr = users.iterator();
 	
 	private UserDirectory (){
 		System.out.println("I am a UserDirectory Instance.");
@@ -25,14 +25,14 @@ public class UserDirectory{
 	
 	public User findUserById(String id){
 		User notFoundUser = users.get(0);
-		
-		while(usr.hasNext()){
-			User user = (User)usr.next();
-			if (user.getUserId().equals(id)){
-				System.out.println("User found!\nName: " + user.getFullName() + "\n");
-				notFoundUser = user;
-			}
-		}
+
+//		while(usr.hasNext()){
+//			User user = (User)usr.next();
+//			if (user.getUserId().equals(id)){
+//				System.out.println("User found!\nName: " + user.getFullName() + "\n");
+//				notFoundUser = user;
+//			}
+//		}
 		return notFoundUser;
 	}
 }

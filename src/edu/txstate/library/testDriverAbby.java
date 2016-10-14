@@ -11,9 +11,10 @@ public class testDriverAbby {
 		System.out.println("testing");
 		LibrarySystem alkek = LibrarySystem.getInstance();
 		
-		Book agile = new Book();
+		Book agile = new Book(9342342L, "skdslfkadj", "Agile", "123123", "jason", 3);
 		alkek.addDocument(agile);
 
+		System.out.println(agile.getPublisher());
 	}
 
 }
