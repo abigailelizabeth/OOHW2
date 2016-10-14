@@ -5,8 +5,8 @@ public abstract class LongTermDocument extends Document {
 	private static final int FACULTY_LOAN_TIME = 12;
 
 	public LongTermDocument(){}
-	public LongTermDocument(String title, String publishDate, String publisher, int num){
-		super(title, publishDate, publisher, num);
+	public LongTermDocument(String title, String publishDate, String publisher, int num, String author){
+		super(title, publishDate, publisher, num, author);
 
 	}
 	public static int getStudentTime(){

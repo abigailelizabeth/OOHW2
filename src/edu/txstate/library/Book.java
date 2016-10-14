@@ -8,8 +8,8 @@ public class Book extends LongTermDocument {
 		serialVersionUID = 0;
 		mIsbn = "";
 	}
-	public Book(long serial, String isbn, String title, String publishDate, String publisher, int numCopies){
-		super(title, publishDate, publisher, numCopies);
+	public Book(long serial, String isbn, String title, String publishDate, String publisher, int numCopies, String author){
+		super(title, publishDate, publisher, numCopies, author);
 		this.setIsbn(isbn);
 		this.setSerialVersionUID(serial);
 	}
