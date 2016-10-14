@@ -58,9 +58,7 @@ public abstract class Document {
 	public int getNumberOfCopies(){
 		return this.mNumberOfCopies;
 	}
-	public int getNumberOfAuthors(){
-		return Author.getNumOfInstances();
-	}
+
 	public static int getNumOfInstances(){
 		return counter;
 	}

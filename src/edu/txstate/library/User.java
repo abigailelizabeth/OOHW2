@@ -2,24 +2,32 @@ package edu.txstate.library;
 
 public abstract class User extends Person{
 	private String mUserId;
+    private int numBorrowed;
 	
 	public User(){
 		this.mUserId = "";
+        this.numBorrowed = 0;
 	}
+
+	public User(String firstName, String middleName, String lastName, String userId){
+        super(firstName, middleName, lastName);
+        this.mUserId = userId;
+        this.numBorrowed = 0;
+    }
 	
 	public void setUserId(String userId){
 		this.mUserId = userId;
 	}
 	
 	public int getNumberBorrowed(){
-		return 0;
+		return this.numBorrowed;
 	}
 	
-	public void registerBorrow(){
+	public void registerBorrow(Document document){
 		
 	}
 	
-	public void deregisterBorrow(){
+	public void deregisterBorrow(Document document){
 		
 	}
 	
