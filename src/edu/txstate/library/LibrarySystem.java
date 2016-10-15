@@ -3,7 +3,7 @@ package edu.txstate.library;
 public class LibrarySystem {
 	private DocumentDirectory mDocumentDirectory;
 	private UserDirectory mUserDirectory;
-	private LoanTransactionDirectory<LoanTransaction> mLoanTransactionDirectory;
+	private LoanTransactionDirectory mLoanTransactionDirectory;
 	private static LibrarySystem instance = new LibrarySystem();
 
 	
