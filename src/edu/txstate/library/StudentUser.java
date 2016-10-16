@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class StudentUser extends User implements Serializable {
+public class StudentUser extends User {
     private static final int STUDENT_BORROW_LIMIT = 6;
     private int numberBorrowed;
 
@@ -44,5 +44,10 @@ public class StudentUser extends User implements Serializable {
         // find the transaction maybe create a function to find the transaction by the document
         // have it return the transaction and we acn remove it
         //
+    }
+
+    @Override
+    public String toString(){
+        return getFirstName() + "\t" + getLastName() + "\t" + getUserId() + "\tstudent\n";
     }
 }

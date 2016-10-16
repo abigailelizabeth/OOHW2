@@ -1,9 +1,13 @@
 package edu.txstate.library;
 
+//import java.io.*;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -80,6 +84,23 @@ public class UserDirectory{
         // Display list of users
         for (User user : users){
             System.out.println(user.getFullName());
+        }
+    }
+    //SAVE USERS TO "users.txt"
+    public void saveData(){
+        try{
+            File userFile = new File("users.txt");
+            FileOutputStream fos = new FileOutputStream(userFile, false);
+
+            for (User user : users){
+                byte[] userBytes = user.toString().getBytes();
+                fos.write(userBytes);
+            }
+            fos.close();
+        } catch (FileNotFoundException fnfe){
+            System.out.println("File not found.");
+        } catch (IOException ioe){
+            ioe.printStackTrace();
         }
     }
 	

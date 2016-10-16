@@ -46,7 +46,7 @@ public class LibrarySystem {
 		mUserDirectory.displayUsers();
 	}
 	public void saveData(){
-		// save the data
+		getUserDirectory().saveData();
 	}
 	public void performSearch(int type, String query){
 		mDocumentDirectory.findDocumentWithQuery(type, query);

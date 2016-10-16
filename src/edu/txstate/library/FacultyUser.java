@@ -39,4 +39,9 @@ public class FacultyUser extends User implements Serializable {
         this.numberBorrowed--;
         document.incrementNumberOfCopies();
     }
+
+    @Override
+    public String toString(){
+        return getFirstName() + "\t" + getLastName() + "\t" + getUserId() + "\tfaculty\n";
+    }
 }

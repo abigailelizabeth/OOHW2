@@ -1,8 +1,6 @@
 package edu.txstate.library;
 
-import java.io.Serializable;
-
-public abstract class User extends Person implements Serializable{
+public abstract class User extends Person{
 	private String mUserId;
     private int numBorrowed;
 	
