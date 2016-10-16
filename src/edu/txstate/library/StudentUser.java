@@ -1,14 +1,15 @@
 package edu.txstate.library;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class StudentUser extends User {
+public class StudentUser extends User implements Serializable {
     private static final int STUDENT_BORROW_LIMIT = 6;
     private int numberBorrowed;
 
-    public StudentUser(String firstName, String middleName, String lastName, String userId){
-        super(firstName, middleName, lastName, userId);
+    public StudentUser(String firstName, String lastName, String userId){
+        super(firstName, lastName, userId);
         this.numberBorrowed = 0;
     }
     public static int getStudentBorrowLimit(){

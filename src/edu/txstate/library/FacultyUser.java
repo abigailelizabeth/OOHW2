@@ -1,14 +1,16 @@
 package edu.txstate.library;
 
+import java.io.Serializable;
+
 /**
  * Created by Jason on 10/13/2016.
  */
-public class FacultyUser extends User {
+public class FacultyUser extends User implements Serializable {
     private static final int FACULTY_BORROW_LIMIT = 12;
     private int numberBorrowed;
 
-    public FacultyUser(String firstName, String middleName, String lastName, String userId){
-        super(firstName, middleName, lastName, userId);
+    public FacultyUser(String firstName, String lastName, String userId){
+        super(firstName, lastName, userId);
         this.numberBorrowed = 0;
     }
 
