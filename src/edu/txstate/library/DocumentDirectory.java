@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DocumentDirectory{
 	private static DocumentDirectory instance = new DocumentDirectory();
@@ -74,8 +75,7 @@ public class DocumentDirectory{
 		System.out.println(doc.getTitle() + "     " + doc.getAuthor() + "     " + doc.getNumberOfCopies());
 	}
 	public void saveData(){
-		//do stuff with the file name to write to the file in order to save all the date
-		
+		//do stuff with the file name to write to the file in order to save all the data
 	}
 
 	public void loadData() {
