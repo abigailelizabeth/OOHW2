@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class DocumentDirectory{
 	private static DocumentDirectory instance = new DocumentDirectory();
@@ -32,16 +33,34 @@ public class DocumentDirectory{
 	public boolean removeDocument(Document doc){
 		return documents.remove(doc);
 	}
-	public Document findDocumentWithQuery(int type, String query){
+	public void findDocumentWithQuery(int type, String query){
 		// do stuff with query to find document
 		boolean notFound = true;
+		int i = 0;
+		Scanner in = new Scanner(System.in);
+
 		if(type == 1){
 			System.out.println("SEARCH RESULTS for " + query);
 			for (Document a: documents
 				 ) {
 				if(a.getTitle().equalsIgnoreCase(query)){
 					displayDocument(a);
-					notFound = false;
+					System.out.println("Select an option: \n"+
+						"1. Checkout Document\n" +
+						"2. Not what I'm looking for. Continue Search\n"+
+						"3. Exit Search");
+					i = InputValidator.validate(3);
+
+					if(i == 1){
+						notFound = false;
+						LibrarianUI.processCheckout(a);
+					}
+					else if(i == 2){
+						notFound = true;
+					}
+					else{
+						Console.displayUserMenu();
+					}
 				}
 			}
 			if(notFound){
@@ -51,8 +70,7 @@ public class DocumentDirectory{
 		else{
 			System.out.println("You are trying to search by author: " + query);
 		}
-		Document placeHolder = documents.get(0);
-		return placeHolder;
+
 	}
 	public void displayDocument(Document doc){
 		System.out.println(doc.getTitle() + "     " + doc.getAuthor() + "     " + doc.getNumberOfCopies());

@@ -29,11 +29,11 @@ public class StudentUser extends User implements Serializable {
                 LibrarySystem.getInstance().saveData();
             }
             else{
-                System.out.println("You have already reached your check out limit.");
+                System.out.println(this.getFirstName() + ", you have already reached your check out limit.");
             }
         }
         else{
-            System.out.println("This book is currently not available.");
+            System.out.println("Sorry " + this.getFullName() + ", this book is currently not available.");
         }
     }
 
