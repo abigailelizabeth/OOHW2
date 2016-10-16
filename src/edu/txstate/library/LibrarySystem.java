@@ -1,5 +1,6 @@
 package edu.txstate.library;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.omg.CORBA.Object;
 
 import java.io.BufferedReader;
@@ -51,5 +52,6 @@ public class LibrarySystem {
 	}
 	public void loadData(){
         getUserDirectory().loadData();
-    }
+        getDocumentDirectory().loadData();
+	}
 }
