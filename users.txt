@@ -3,4 +3,4 @@ Abigail Barron 2 student
 April Sales 3 faculty
 Gabri Loa 4 student
 Roy Flores 5 student
-Elizabeth Harwell student
+Elizabeth Harwell 4 student
