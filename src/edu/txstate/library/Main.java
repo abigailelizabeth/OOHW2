@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main (String[] args){
-        LibrarySystem alkek = LibrarySystem.getInstance();
+        LibrarySystem.getInstance();
 
-        Console clientUI = new Console(alkek);
+        Console clientUI = new Console();
 
         clientUI.welcomeMenu();
 

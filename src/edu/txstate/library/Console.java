@@ -9,8 +9,8 @@ import java.util.Scanner;
  * Created by abiga on 10/15/2016.
  */
 public class Console {
-    private LibrarySystem alkek;
-    public Console(LibrarySystem lib){alkek=lib;}
+
+    public Console(){}
     public void welcomeMenu(){
         int i = 0;
         System.out.println("Welcome to Alkek Library System\n");
@@ -27,75 +27,47 @@ public class Console {
             displayUserMenu();
         }
         else{
-            displayLibrarianMenu();
+            runLibrarianUI();
         }
+    }
+
+    public void runLibrarianUI(){
+        LibrarianUI.startUI();
     }
     public void displayUserMenu(){
         int i = 0;
         System.out.println("Select a number to continue\n" +
-                "1. I'm a Student \n" +
-                "2. I'm a Faculty Member\n" +
-                "3. Register");
-        i = InputValidator.validate(3);
+                "1. Search Document \n" +
+                "2. Checkout Document\n" +
+                "3. Return Document\n" +
+                "4. View Loans");
+        i = InputValidator.validate(4);
         if(i == 1){
-            System.out.println("Hi Bobcat Student");
+            searchDocument();
         }
         else if(i == 2){
-            System.out.println("Hi Faculty ");
+           searchDocument();
         }
         else{
             System.out.println("Sign up time.");
         }
 }
-
-    public void displayLibrarianMenu(){
+    public void searchDocument(){
+        Scanner in = new Scanner(System.in);
+        String query = "";
         int i = 0;
-        System.out.println("LIBRARIAN ADMIN MENU\nSelect a number to continue\n" +
-                "1. Add a User\n" +
-                "2. Add a Document\n" +
-                "3. View Transactions");
-        i = InputValidator.validate(3);
-        if(i ==1){
-           addUser();
-        }
-        else if(i ==2){
-            //addDocument();
+        System.out.println("Search By: \n" +
+                "1. Title\n" +
+                "2. Author");
+        i = InputValidator.validate(2);
+        if(i == 1){
+            System.out.println("Enter Title");
+            query = in.nextLine();
         }
         else{
-            //viewTransactions();
+            System.out.println("Enter Author's Name:");
+            query = in.nextLine();
         }
-
-    }
-
-    public void addUser(){
-        int i = 0;
-        String first, middle, last, id;
-        Scanner in = new Scanner(System.in);
-        System.out.println("ADD USER\n" +
-                "1. Student\n" +
-                "2. Faculty");
-        InputValidator.validate(2);
-
-        // CREATE STUDENT USER
-
-        System.out.println("Enter First Name: ");
-        first = in.nextLine();
-        System.out.println("Enter Middle Name: ");
-        middle = in.nextLine();
-        System.out.println("Enter Last Name: ");
-        last = in.nextLine();
-        System.out.println("Enter Student ID: ");
-        id = in.nextLine();
-
-        if(i == 1){
-            StudentUser studentUser = new StudentUser(first, middle, last, id);
-            alkek.addUser(studentUser);
-        }
-        else{ // CREATE FACULTY USER
-            FacultyUser facultyUser = new FacultyUser(first, middle, last, id);
-            alkek.addUser(facultyUser);
-        }
-        alkek.displayUsers();
-
+        LibrarySystem.getInstance().performSearch(i, query);
     }
 }

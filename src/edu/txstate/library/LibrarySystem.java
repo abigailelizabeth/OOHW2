@@ -17,7 +17,6 @@ public class LibrarySystem {
 	}
 	
 	public static LibrarySystem getInstance(){
-		System.out.println("Yo you made a librarySystem let me test pushing and updating through intellij");
 		return instance;
 	}
 	public DocumentDirectory getDocumentDirectory(){
@@ -37,5 +36,8 @@ public class LibrarySystem {
 	}
 	public void saveData(){
 		// save the data
+	}
+	public void performSearch(int type, String query){
+		mDocumentDirectory.findDocumentWithQuery(type, query);
 	}
 }

@@ -22,7 +22,7 @@ public class UserDirectory{
 	public static void addUser(User e){
 		System.out.println("Adding: " + e.getFullName());
 		users.add(e);
-		System.out.println("There are " + users.size() + "users");
+		System.out.println("There are " + users.size() + " users");
 	}
 	public ArrayList<User> getUsers(){
 		return users;
