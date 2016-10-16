@@ -12,6 +12,8 @@ public class testDriverJason {
 
 		//StudentUser user1 = new StudentUser();
 		//alkek.addUser(user1);
+		System.out.println("---Calling loadData from LibrarySystem---");
+		alkek.loadData();
 	}
 
 }

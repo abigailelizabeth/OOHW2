@@ -28,6 +28,9 @@ public class LibrarySystem {
 	public DocumentDirectory getDocumentDirectory(){
 		return DocumentDirectory.getInstance();
 	}
+	public UserDirectory getUserDirectory(){
+        return UserDirectory.getInstance();
+    }
 	public void addDocument(Document doc){
 		DocumentDirectory.addDocument(doc);
 	}
@@ -47,6 +50,6 @@ public class LibrarySystem {
 		mDocumentDirectory.findDocumentWithQuery(type, query);
 	}
 	public void loadData(){
-
+        getUserDirectory().loadData();
     }
 }
