@@ -1,5 +1,6 @@
 package edu.txstate.library;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -22,7 +23,7 @@ public class LibrarianUI {
             addUser();
         }
         else if(i ==2){
-            //addDocument();
+            addDocument();
         }
         else{
             //viewTransactions();
@@ -56,9 +57,79 @@ public class LibrarianUI {
         else{ // CREATE FACULTY USER
             FacultyUser facultyUser = new FacultyUser(first, last, id);
             LibrarySystem.getInstance().addUser(facultyUser);
+
         }
         LibrarySystem.getInstance().displayUsers();
-
+        displayLibrarianMenu();
     }
 
+    private static void addDocument(){
+        int i = 0, numCopies, volumeNumber, journalNumber;
+        long serial;
+        String isbn, title, publishDate, publisher, author;
+        Scanner in = new Scanner(System.in);
+        System.out.println("ADD DOCUMENT\n" +
+                "1. Book\n" +
+                "2. Conference Proceeding" +
+                "3. Journal");
+        InputValidator.validate(3);
+
+        System.out.println("Enter Title: ");
+        title = in.nextLine();
+
+        System.out.println("Enter Publish Date: ");
+        publishDate = in.nextLine();
+        System.out.println("Enter Publisher: ");
+        publisher = in.nextLine();
+        System.out.println("Enter number of copies: ");
+        try{
+           numCopies = in.nextInt();
+        }catch(InputMismatchException e){
+            System.out.println("Invalid input: Defaulted number of copies to 1");
+            numCopies = 1;
+        }
+        System.out.println("Enter Author Name: ");
+        author = in.nextLine();
+        if(i ==1 || i== 2){
+            System.out.println("Enter ISBN");
+            isbn = in.nextLine();
+            System.out.println("Enter serial");
+            try{
+                serial = in.nextLong();
+            }catch(InputMismatchException e){
+                System.out.println("WRONG TYPE: DEFAULTED");
+                serial = 12L;
+            }
+            if(i ==1){
+                Book book = new Book(serial, isbn, title, publishDate, publisher, numCopies, author);
+                LibrarySystem.getInstance().addDocument(book);
+            }
+            else{
+                System.out.println("Enter Location: ");
+                String location = in.nextLine();
+                System.out.println("Enter Date: ");
+                String date = in.nextLine();
+                ConferenceProceeding conferenceProceeding = new ConferenceProceeding(location, date, serial, isbn, title, publishDate, publisher, numCopies, author);
+                LibrarySystem.getInstance().addDocument(conferenceProceeding);
+            }
+
+        }
+        else{
+            System.out.println("Enter Journal Number: ");
+            try{
+                journalNumber = in.nextInt();
+            }catch(InputMismatchException e){
+                journalNumber = 1;
+            }
+            System.out.println("Enter Volume Number");
+            try{
+                volumeNumber = in.nextInt();
+            }catch(InputMismatchException e){
+                volumeNumber = 1;
+            }
+            Journal journal = new Journal(title, publishDate, publisher, numCopies, volumeNumber, journalNumber, author);
+            LibrarySystem.getInstance().addDocument(journal);
+        }
+
+    }
 }
