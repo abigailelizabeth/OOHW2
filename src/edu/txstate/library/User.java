@@ -1,6 +1,8 @@
 package edu.txstate.library;
 
-public abstract class User extends Person{
+import java.io.Serializable;
+
+public abstract class User extends Person implements Serializable{
 	private String mUserId;
     private int numBorrowed;
 	
@@ -9,8 +11,8 @@ public abstract class User extends Person{
         this.numBorrowed = 0;
 	}
 
-	public User(String firstName, String middleName, String lastName, String userId){
-        super(firstName, middleName, lastName);
+	public User(String firstName, String lastName, String userId){
+        super(firstName, lastName);
         this.mUserId = userId;
         this.numBorrowed = 0;
     }
@@ -18,11 +20,17 @@ public abstract class User extends Person{
 	public void setUserId(String userId){
 		this.mUserId = userId;
 	}
-	
+
+
 	public int getNumberBorrowed(){
 		return this.numBorrowed;
 	}
-	
+
+
+	public String getUserId(){
+		return this.mUserId;
+	}
+
 	public void registerBorrow(Document document){
 		
 	}
@@ -31,16 +39,12 @@ public abstract class User extends Person{
 		
 	}
 	
-	public String getUserId(){
-		return this.mUserId;
-	}
+
 	
 	public String getFullName(){
 		String first = this.getFirstName();
-		String middle = this.getMiddleName();
 		String last = this.getLastName();
-		String full = first + " " + middle + " " + last;
-		
+		String full = first + " " + last;
 		return full;
 	}
 
