@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class LibrarySystem {
 	private DocumentDirectory mDocumentDirectory;
 	private UserDirectory mUserDirectory;
+	private  User activeUser = null;
 	private LoanTransactionDirectory mLoanTransactionDirectory;
 	private static LibrarySystem instance = new LibrarySystem();
 
@@ -54,5 +55,11 @@ public class LibrarySystem {
 	public void loadData(){
         getUserDirectory().loadData();
         getDocumentDirectory().loadData();
+	}
+	public void setActiveUser(User a){
+		this.activeUser = a;
+	}
+	public User getActiveUser(){
+		return this.activeUser;
 	}
 }

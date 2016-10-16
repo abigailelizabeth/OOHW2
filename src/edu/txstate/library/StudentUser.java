@@ -22,10 +22,12 @@ public class StudentUser extends User implements Serializable {
             if(this.numberBorrowed < getStudentBorrowLimit()){
                 this.numberBorrowed++;
                 document.deccrementNumberOfCopies();
+                System.out.println(this.getFirstName() + ", you've successfully checked out " + document.getTitle() + " By " + document.getAuthor());
                 Date date = new Date();
                 SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yy");
                 LoanTransaction loan = new LoanTransaction(LoanTransaction.getTransactionNum(), this, document, ft.format(date));
                 LoanTransactionDirectory.getInstance().addTransaction(loan);
+                this.getBorrowedDocuments().add(document);
                 LibrarySystem.getInstance().saveData();
             }
             else{
@@ -41,6 +43,7 @@ public class StudentUser extends User implements Serializable {
     public void deregisterBorrow(Document document){
         this.numberBorrowed--;
         document.incrementNumberOfCopies();
+        this.getBorrowedDocuments().remove(document);
         // find the transaction maybe create a function to find the transaction by the document
         // have it return the transaction and we acn remove it
         //

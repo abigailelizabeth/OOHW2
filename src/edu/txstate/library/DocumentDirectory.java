@@ -45,26 +45,35 @@ public class DocumentDirectory{
 				 ) {
 				if(a.getTitle().equalsIgnoreCase(query)){
 					displayDocument(a);
-					System.out.println("Select an option: \n"+
-						"1. Checkout Document\n" +
-						"2. Not what I'm looking for. Continue Search\n"+
-						"3. Exit Search");
-					i = InputValidator.validate(3);
+					notFound = false;
+					if(LibrarySystem.getInstance().getActiveUser() != null) {
+						System.out.println("Select an option: \n" +
+								"1. Checkout Document\n" +
+								"2. Not what I'm looking for. Continue Search\n" +
+								"3. Exit Search");
+						i = InputValidator.validate(3);
 
-					if(i == 1){
-						notFound = false;
-						LibrarianUI.processCheckout(a);
-					}
-					else if(i == 2){
-						notFound = true;
-					}
-					else{
-						Console.displayUserMenu();
+						if (i == 1) {
+							LibrarianUI.processCheckout(a);
+						} else if (i == 2) {
+							notFound = true;
+						} else {
+							Console.displayUserMenu();
+						}
 					}
 				}
 			}
 			if(notFound){
 				System.out.println("No Results");
+			}
+
+			if(LibrarySystem.getInstance().getActiveUser() == null){
+				System.out.println("Select an option: \n" +
+					"1. Exit Search");
+				i = InputValidator.validate(1);
+				if(i == 1){
+					Console.displayGuestMenu();
+				}
 			}
 		}
 		else{
