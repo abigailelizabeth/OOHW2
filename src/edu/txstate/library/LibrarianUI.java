@@ -35,7 +35,7 @@ public class LibrarianUI {
     }
 
 
-    private static void addUser(){
+    public static void addUser(){
         int i = 0;
         String first, last, id;
         Scanner in = new Scanner(System.in);
@@ -64,6 +64,7 @@ public class LibrarianUI {
 
         }
         LibrarySystem.getInstance().displayUsers();
+
         displayLibrarianMenu();
     }
 
@@ -134,15 +135,9 @@ public class LibrarianUI {
 
     public static void processCheckout(Document doc){
         Scanner in = new Scanner(System.in);
-        String id;
-        User user = null;
 
-        System.out.println("Enter User ID: ");
-        id = in.nextLine();
-        user = UserDirectory.getInstance().findUserById(id);
-
-        if(user != null){
-            user.registerBorrow(doc);
+        if(LibrarySystem.getInstance().getActiveUser() != null){
+            LibrarySystem.getInstance().getActiveUser().registerBorrow(doc);
         }
         else{
             System.out.println("User not found");

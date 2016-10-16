@@ -1,9 +1,12 @@
 package edu.txstate.library;
 
+import java.util.ArrayList;
+
 public abstract class User extends Person{
 	private String mUserId;
     private int numBorrowed;
-	
+	private ArrayList<Document> borrowedDocuments = new ArrayList<Document>();
+
 	public User(){
 		this.mUserId = "";
         this.numBorrowed = 0;
@@ -32,7 +35,9 @@ public abstract class User extends Person{
 	public void registerBorrow(Document document){
 		
 	}
-	
+	public ArrayList<Document> getBorrowedDocuments(){
+		return borrowedDocuments;
+	}
 	public void deregisterBorrow(Document document){
 		
 	}
