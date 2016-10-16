@@ -84,15 +84,15 @@ public class UserDirectory{
     }
 	
 	public User findUserById(String id){
-		User notFoundUser = users.get(0);
+		User user = null;
 
-//		while(usr.hasNext()){
-//			User user = (User)usr.next();
-//			if (user.getUserId().equals(id)){
-//				System.out.println("User found!\nName: " + user.getFullName() + "\n");
-//				notFoundUser = user;
-//			}
-//		}
-		return notFoundUser;
+        for (User a: users
+             ) {
+            if(a.getUserId().equalsIgnoreCase(id)){
+                user = a;
+            }
+        }
+        return user;
+
 	}
 }

@@ -34,7 +34,7 @@ public class Console {
     private static void runLibrarianUI(){
         LibrarianUI.startUI();
     }
-    private static void displayUserMenu(){
+    public static void displayUserMenu(){
         int i = 0;
         System.out.println("Select a number to continue\n" +
                 "1. Search Document \n" +
@@ -69,5 +69,8 @@ public class Console {
             query = in.nextLine();
         }
         LibrarySystem.getInstance().performSearch(i, query);
+
+        displayUserMenu();
     }
+
 }

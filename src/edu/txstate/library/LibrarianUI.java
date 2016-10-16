@@ -131,4 +131,22 @@ public class LibrarianUI {
         }
         displayLibrarianMenu();
     }
+
+    public static void processCheckout(Document doc){
+        Scanner in = new Scanner(System.in);
+        String id;
+        User user = null;
+
+        System.out.println("Enter User ID: ");
+        id = in.nextLine();
+        user = UserDirectory.getInstance().findUserById(id);
+
+        if(user != null){
+            user.registerBorrow(doc);
+        }
+        else{
+            System.out.println("User not found");
+        }
+
+    }
 }
