@@ -33,7 +33,6 @@ public class Journal extends ShortTermDocument {
         return this.mNumber;
     }
 
-
     public ArrayList<JournalArticle> getJournalArticles(){
         return journalArticles;
     }
