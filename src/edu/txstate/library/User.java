@@ -39,8 +39,6 @@ public abstract class User extends Person implements Serializable{
 		
 	}
 	
-
-	
 	public String getFullName(){
 		String first = this.getFirstName();
 		String last = this.getLastName();
