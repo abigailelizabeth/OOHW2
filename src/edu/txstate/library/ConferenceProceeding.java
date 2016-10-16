@@ -13,8 +13,8 @@ public class ConferenceProceeding extends Book{
         date = "";
     }
 
-    public ConferenceProceeding(String location, String date, long serial, String isbn, String title, String publishDate, String publisher, int num){
-        super(serial, isbn, title, publishDate, publisher, num);
+    public ConferenceProceeding(String location, String date, long serial, String isbn, String title, String publishDate, String publisher, int num, String author){
+        super(serial, isbn, title, publishDate, publisher, num, author);
         setLocation(location);
         setDate(date);
     }

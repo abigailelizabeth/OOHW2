@@ -20,7 +20,12 @@ public class UserDirectory{
 	}
 	
 	public static void addUser(User e){
+		System.out.println("Adding: " + e.getFullName());
 		users.add(e);
+		System.out.println("There are " + users.size() + "users");
+	}
+	public ArrayList getUsers(){
+		return users;
 	}
 	
 	public User findUserById(String id){

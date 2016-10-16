@@ -1,5 +1,7 @@
 package edu.txstate.library;
 
+import java.util.ArrayList;
+
 public class LibrarySystem {
 	private DocumentDirectory mDocumentDirectory;
 	private UserDirectory mUserDirectory;
@@ -26,6 +28,9 @@ public class LibrarySystem {
 	}
 	public void addUser(User user){
 		UserDirectory.addUser(user);
+	}
+	public ArrayList getUsers(){
+		return mUserDirectory.getUsers();
 	}
 	public void saveData(){
 		// save the data
