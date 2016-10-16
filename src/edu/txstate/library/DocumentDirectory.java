@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class DocumentDirectory{
@@ -85,12 +84,13 @@ public class DocumentDirectory{
 		System.out.println(doc.getTitle() + "     " + doc.getAuthor() + "     " + doc.getNumberOfCopies());
 	}
 	public void saveData(){
-		//do stuff with the file name to write to the file in order to save all the date
-		
+		//do stuff with the file name to write to the file in order to save all the data
 	}
 
-	public void loadData(){
-		try {
+	public void loadData() {
+
+        // LOAD BOOK DATA ----------------------------------------------------------------------------------------------
+        try {
             // Create Buffered Reader object instance with a FileReader
             BufferedReader br = new BufferedReader(new FileReader("books.txt"));
             // Read the first line from text file
@@ -115,17 +115,49 @@ public class DocumentDirectory{
             }
             br.close();
 
-		} catch (FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             System.out.println("File not found");
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+//          TO TEST LOADING CORRECTNESS
+//        for (Document doc : documents) {
+//            System.out.println("Title: " + doc.getTitle() + "\nAuthor: " + doc.getAuthor());
+//        }
 
-        for (Document doc : documents){
-            System.out.println(doc.getTitle());
+        // LOAD JOURNAL DATA -------------------------------------------------------------------------------------------
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("journals.txt"));
+            String fileRead = br.readLine();
+            while (fileRead != null) {
+                String[] tokenize = fileRead.split("\\t");
+                String tempTitle = tokenize[0];
+                String tempDate = tokenize[1];
+                String tempPublisher = tokenize[2];
+                int tempNumCopies = Integer.parseInt(tokenize[3]);
+                int tempVol = Integer.parseInt(tokenize[4]);
+                int tempNum = Integer.parseInt(tokenize[5]);
+                String tempAuthor = tokenize[6];
+                String tempArticles = tokenize[7];
+
+                // Create Journal object
+                Journal temp = new Journal(tempTitle, tempDate, tempPublisher, tempNumCopies, tempVol, tempNum, tempAuthor);
+
+                //split the articles in tempArticles into separate tokens
+                String[] articleArray = tempArticles.split("\\s*,\\s*");
+
+                // add articles to JournalArticles ArrayList
+                for (String article : articleArray) {
+                    temp.getJournalArticles().add(new JournalArticle(temp, article));
+                    //System.out.println("Article added.");
+                }
+                fileRead = br.readLine();
+            }
+            br.close();
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File not found");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-	}
-
-
-
+    }
 }

@@ -12,7 +12,14 @@ public class JournalArticle {
         this.parentJournal = parentJournal;
     }
 
+
     public Journal getParentJournal(){
-        return parentJournal;
+        return this.parentJournal;
+    }
+    public String getArticleTitle() {
+        return this.articleTitle;
+    }
+    public void setArticleTitle(String title){
+        this.articleTitle = title;
     }
 }

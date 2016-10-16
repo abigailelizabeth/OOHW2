@@ -1,0 +1,5 @@
+Emerging Trends in IoT	08/19/2014	IEEE Computer	01	10	11	Jason Jalufka	a1, a2, a3
+Common Framework	09/20/2014	Elsevier	02	10	11	Abigail Barron	c1, c2, c3
+ACM Computing Survey	10/12/2013	CACM	01	10	11	Bob Smith	b1, b2, b3, b4
+Foundations in Machine Learning	01/22/2014	IEEE Society	01	11	12	Frankfurt Welson	e1, e2
+Molecular Systems Biology	10/12/2009	Springer Verlag	01	10	11	Anita Palosky	n1, n2, n4, n5, n6
