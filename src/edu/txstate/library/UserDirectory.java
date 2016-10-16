@@ -24,8 +24,15 @@ public class UserDirectory{
 		users.add(e);
 		System.out.println("There are " + users.size() + "users");
 	}
-	public ArrayList getUsers(){
+	public ArrayList<User> getUsers(){
 		return users;
+	}
+	public void displayUsers(){
+		for (User a: users
+			 ) {
+			System.out.println(a.getFullName());
+
+		}
 	}
 	
 	public User findUserById(String id){

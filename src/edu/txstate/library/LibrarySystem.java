@@ -32,6 +32,9 @@ public class LibrarySystem {
 	public ArrayList getUsers(){
 		return mUserDirectory.getUsers();
 	}
+	public void displayUsers(){
+		mUserDirectory.displayUsers();
+	}
 	public void saveData(){
 		// save the data
 	}

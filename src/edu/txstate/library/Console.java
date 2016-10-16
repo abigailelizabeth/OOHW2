@@ -95,7 +95,7 @@ public class Console {
             FacultyUser facultyUser = new FacultyUser(first, middle, last, id);
             alkek.addUser(facultyUser);
         }
-
+        alkek.displayUsers();
 
     }
 }
