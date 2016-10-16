@@ -17,16 +17,20 @@ public class LibrarianUI {
         System.out.println("LIBRARIAN ADMIN MENU\nSelect a number to continue\n" +
                 "1. Add a User\n" +
                 "2. Add a Document\n" +
-                "3. View Transactions");
-        i = InputValidator.validate(3);
+                "3. View Transactions\n" +
+                "4. Log out");
+        i = InputValidator.validate(4);
         if(i ==1){
             addUser();
         }
         else if(i ==2){
             addDocument();
         }
-        else{
+        else if(i == 3){
             //viewTransactions();
+        }
+        else{
+            Console.welcomeMenu();
         }
     }
 
@@ -65,14 +69,13 @@ public class LibrarianUI {
 
     private static void addDocument(){
         int i = 0, numCopies, volumeNumber, journalNumber;
-        long serial;
         String isbn, title, publishDate, publisher, author;
         Scanner in = new Scanner(System.in);
         System.out.println("ADD DOCUMENT\n" +
                 "1. Book\n" +
-                "2. Conference Proceeding" +
+                "2. Conference Proceeding\n" +
                 "3. Journal");
-        InputValidator.validate(3);
+        i = InputValidator.validate(3);
 
         System.out.println("Enter Title: ");
         title = in.nextLine();
@@ -88,20 +91,16 @@ public class LibrarianUI {
             System.out.println("Invalid input: Defaulted number of copies to 1");
             numCopies = 1;
         }
+
+        in.nextLine();
         System.out.println("Enter Author Name: ");
         author = in.nextLine();
         if(i ==1 || i== 2){
             System.out.println("Enter ISBN");
             isbn = in.nextLine();
-            System.out.println("Enter serial");
-            try{
-                serial = in.nextLong();
-            }catch(InputMismatchException e){
-                System.out.println("WRONG TYPE: DEFAULTED");
-                serial = 12L;
-            }
+
             if(i ==1){
-                Book book = new Book(serial, isbn, title, publishDate, publisher, numCopies, author);
+                Book book = new Book(isbn, title, publishDate, publisher, numCopies, author);
                 LibrarySystem.getInstance().addDocument(book);
             }
             else{
@@ -109,7 +108,7 @@ public class LibrarianUI {
                 String location = in.nextLine();
                 System.out.println("Enter Date: ");
                 String date = in.nextLine();
-                ConferenceProceeding conferenceProceeding = new ConferenceProceeding(location, date, serial, isbn, title, publishDate, publisher, numCopies, author);
+                ConferenceProceeding conferenceProceeding = new ConferenceProceeding(location, date, isbn, title, publishDate, publisher, numCopies, author);
                 LibrarySystem.getInstance().addDocument(conferenceProceeding);
             }
 
@@ -130,6 +129,6 @@ public class LibrarianUI {
             Journal journal = new Journal(title, publishDate, publisher, numCopies, volumeNumber, journalNumber, author);
             LibrarySystem.getInstance().addDocument(journal);
         }
-
+        displayLibrarianMenu();
     }
 }

@@ -26,16 +26,18 @@ public class DocumentDirectory{
 	}
 	public Document findDocumentWithQuery(int type, String query){
 		// do stuff with query to find document
+		boolean notFound = true;
 		if(type == 1){
 			System.out.println("SEARCH RESULTS for " + query);
 			for (Document a: documents
 				 ) {
-				if(a.getTitle().toUpperCase() == query.toUpperCase() ){
+				if(a.getTitle().equalsIgnoreCase(query)){
 					displayDocument(a);
+					notFound = false;
 				}
-				else{
-					System.out.println("No Results");
-				}
+			}
+			if(notFound){
+				System.out.println("No Results");
 			}
 		}
 		else{

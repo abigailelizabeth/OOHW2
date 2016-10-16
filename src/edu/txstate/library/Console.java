@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Console {
 
     public Console(){}
-    public void welcomeMenu(){
+    public static void welcomeMenu(){
         int i = 0;
         System.out.println("Welcome to Alkek Library System\n");
 
@@ -31,10 +31,10 @@ public class Console {
         }
     }
 
-    public void runLibrarianUI(){
+    private static void runLibrarianUI(){
         LibrarianUI.startUI();
     }
-    public void displayUserMenu(){
+    private static void displayUserMenu(){
         int i = 0;
         System.out.println("Select a number to continue\n" +
                 "1. Search Document \n" +
@@ -52,7 +52,7 @@ public class Console {
             System.out.println("Sign up time.");
         }
 }
-    public void searchDocument(){
+    private static void searchDocument(){
         Scanner in = new Scanner(System.in);
         String query = "";
         int i = 0;
