@@ -23,6 +23,7 @@ public class LibrarySystem {
 		mDocumentDirectory = DocumentDirectory.getInstance();
 		mUserDirectory = UserDirectory.getInstance();
 //		mLoanTransactionDirectory = LoanTransactionDirectory.getInstance();
+		loadData();
 	}
 	
 	public static LibrarySystem getInstance(){

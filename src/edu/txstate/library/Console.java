@@ -20,9 +20,10 @@ public class Console {
         System.out.println("Select a number to continue\n" +
                 "1. Registered User Login\n" +
                 "2. Librarian Login\n" +
-                "3. Continue as Guest User");
+                "3. Continue as Guest User\n" +
+                "4. Exit");
 
-        i = InputValidator.validate(3);
+        i = InputValidator.validate(4);
 
         if(i == 1){
                 userLogin();
@@ -32,8 +33,12 @@ public class Console {
         else if(i == 2){
             runLibrarianUI();
         }
-        else{
+        else if(i==3){
             displayGuestMenu();
+        }
+        else{
+            System.out.println("Good bye!");
+            LibrarySystem.getInstance().saveData();
         }
     }
 

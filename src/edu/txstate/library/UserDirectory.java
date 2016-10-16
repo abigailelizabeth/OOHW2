@@ -28,9 +28,7 @@ public class UserDirectory{
 	}
 	
 	public static void addUser(User e){
-		System.out.println("Adding: " + e.getFullName());
 		users.add(e);
-		System.out.println("There are " + users.size() + " users");
 	}
 	public ArrayList<User> getUsers(){
 		return users;
@@ -61,11 +59,13 @@ public class UserDirectory{
                 String tempID    = tokenize[2];
                 String tempType  = tokenize[3];
 
+                System.out.println("ID DETECTED: " + tempID);
                 // Create temporary instances of User object
                 if(tempType.equals("student")){
-                    User temp = new StudentUser(tempfName, templName, tempID);
                     //Add user to UserDirectory arrayList
-                    getUsers().add(temp);
+
+                    addUser(new StudentUser(tempfName, templName, tempID));
+
                 }
                 else{
                     User temp = new FacultyUser(tempfName, templName, tempID);
