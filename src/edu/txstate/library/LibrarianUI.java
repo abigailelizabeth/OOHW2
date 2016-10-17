@@ -36,13 +36,13 @@ public class LibrarianUI {
 
 
     public static void addUser(){
-        int i = 0;
+        int i;
         String first, last, id;
         Scanner in = new Scanner(System.in);
         System.out.println("ADD USER\n" +
                 "1. Student\n" +
                 "2. Faculty");
-        InputValidator.validate(2);
+        i = InputValidator.validate(2); // this is where the error was when determining user type
 
         // CREATE STUDENT USER
 
@@ -55,10 +55,12 @@ public class LibrarianUI {
         id = in.nextLine();
 
         if(i == 1){
+            System.out.println("Creating Student User");
             StudentUser studentUser = new StudentUser(first, last, id);
             LibrarySystem.getInstance().addUser(studentUser);
         }
         else{ // CREATE FACULTY USER
+            System.out.println("CREATING FACULTY USER");
             FacultyUser facultyUser = new FacultyUser(first, last, id);
             LibrarySystem.getInstance().addUser(facultyUser);
 

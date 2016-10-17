@@ -12,7 +12,6 @@ public class Main {
 
         StudentUser a = new StudentUser("Abigail", "Barron", "A04008715");
         StudentUser b = new StudentUser("Korra", "Paws", "dog01");
-
         FacultyUser c = new FacultyUser("Jason", "Jalufka", "a0987654321");
 
         alkek.addUser(a);

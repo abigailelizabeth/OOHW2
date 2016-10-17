@@ -63,13 +63,10 @@ public class UserDirectory{
                 // Create temporary instances of User object
                 if(tempType.equals("student")){
                     //Add user to UserDirectory arrayList
-
                     addUser(new StudentUser(tempfName, templName, tempID));
-
                 }
                 else{
-                    User temp = new FacultyUser(tempfName, templName, tempID);
-                    getUsers().add(temp);
+                    addUser(new FacultyUser(tempfName, templName, tempID));
                 }
                 fileRead = br.readLine();
             }
