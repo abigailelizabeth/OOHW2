@@ -12,7 +12,6 @@ public class JournalArticle {
         this.parentJournal = parentJournal;
     }
 
-
     public Journal getParentJournal(){
         return this.parentJournal;
     }
@@ -21,5 +20,9 @@ public class JournalArticle {
     }
     public void setArticleTitle(String title){
         this.articleTitle = title;
+    }
+    @Override
+    public String toString(){
+        return getArticleTitle();
     }
 }

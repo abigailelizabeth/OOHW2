@@ -1,4 +1,3 @@
 Abigail	Barron	A04008715	student
 Korra	Paws	dog01	student
 Jason	Jalufka	a0987654321	faculty
-Barrry	Abba	poslike	faculty

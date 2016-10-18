@@ -33,4 +33,9 @@ public class ConferenceProceeding extends Book{
     public void setDate(String date){
         this.date = date;
     }
+    @Override
+    public String toString(){
+        return getLocation() + "\t" + getDate() + "\t" + getIsbn() + "\t" + getTitle() + "\t" + getPublishDate()
+                + "\t" + getPublisher() + "\t" + getNumberOfCopies() + "\t" + getAuthor() + "\n";
+    }
 }

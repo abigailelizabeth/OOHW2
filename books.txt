@@ -1,6 +1,1 @@
-9780203166178	JavaProgramming	09/12/2005	CRC Press	20	Jo Wood
-1449389732	Hadoop Big Data	10/15/2010	Yahoo Press	04	Tom White
-1111969604	Database Systems	10/10/2013	CRC Press	05	Ramez Elmasri, Shamkant B. Nathe
-9780470534052	Advanced Networking	12/09/2009	John Wiley	11	Doug Lowe, Chris Wang
-9780080499451	Artficial Intelligence	04/17/2009	Newness	12	Nils J. Nilsson
-9780262318952	Distributed Algorithms	06/12/2013	MIT Press	06	Tom Gedeon
+alsdfkj	Sam Sam Outings	LastNight	Sam	3	Wutang

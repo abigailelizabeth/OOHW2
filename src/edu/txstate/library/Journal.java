@@ -33,6 +33,11 @@ public class Journal extends ShortTermDocument {
         return this.mNumber;
     }
 
+    @Override
+    public String toString(){
+        return getTitle() + "\t" + getPublishDate() + "\t" + getPublisher() + "\t" + getNumberOfCopies() +
+                "\t" + getVolume() + "\t" + getNumber() + "\t" + getAuthor() + "\t" + "a1, a2, a3, a4" + "\n";
+    }
     public ArrayList<JournalArticle> getJournalArticles(){
         return journalArticles;
     }

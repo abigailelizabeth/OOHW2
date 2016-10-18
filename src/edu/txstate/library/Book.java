@@ -18,4 +18,9 @@ public class Book extends LongTermDocument {
 	public String getIsbn(){
 		return this.mIsbn;
 	}
+
+	@Override
+	public String toString(){
+		return getIsbn() + "\t" + getTitle() + "\t" + getPublishDate() + "\t" + getPublisher() + "\t" + getNumberOfCopies() + "\t" + getAuthor() + "\n";
+	}
 }

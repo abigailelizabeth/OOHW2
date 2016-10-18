@@ -58,7 +58,6 @@ public abstract class Document {
 	public int getNumberOfCopies(){
 		return this.mNumberOfCopies;
 	}
-
 	public static int getNumOfInstances(){
 		return counter;
 	}

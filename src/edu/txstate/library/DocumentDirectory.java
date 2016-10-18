@@ -9,87 +9,162 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DocumentDirectory{
-	private static DocumentDirectory instance = new DocumentDirectory();
+public class DocumentDirectory {
+    private static DocumentDirectory instance = new DocumentDirectory();
 
-	private static ArrayList<Document> documents = new ArrayList<Document>();
-	
-	private DocumentDirectory(){
-		System.out.println("I am a DocumentDirectory Instance. ");
-		// ensure class has one instance
-	}
-	
-	public static DocumentDirectory getInstance(){
-		return instance;
-	}
+    private static ArrayList<Document> documents = new ArrayList<Document>();
 
-	public ArrayList<Document> getDocuments(){
+    private DocumentDirectory() {
+        System.out.println("I am a DocumentDirectory Instance. ");
+        // ensure class has one instance
+    }
+
+    public static DocumentDirectory getInstance() {
+        return instance;
+    }
+
+    public ArrayList<Document> getDocuments() {
         return documents;
     }
-	
-	public static void addDocument(Document doc){
-		System.out.println("im trying to add a document");
-		documents.add(doc);
-	}
-	public boolean removeDocument(Document doc){
-		return documents.remove(doc);
-	}
-	public void findDocumentWithQuery(int type, String query){
-		// do stuff with query to find document
-		boolean notFound = true;
-		int i = 0;
-		Scanner in = new Scanner(System.in);
 
-		if(type == 1){
-			System.out.println("SEARCH RESULTS for " + query);
-			for (Document a: documents
-				 ) {
-				if(a.getTitle().equalsIgnoreCase(query)){
-					displayDocument(a);
-					notFound = false;
-					if(LibrarySystem.getInstance().getActiveUser() != null) {
-						System.out.println("Select an option: \n" +
-								"1. Checkout Document\n" +
-								"2. Not what I'm looking for. Continue Search\n" +
-								"3. Exit Search");
-						i = InputValidator.validate(3);
+    public static void addDocument(Document doc) {
+        System.out.println("im trying to add a document");
+        documents.add(doc);
+    }
 
-						if (i == 1) {
-							LibrarianUI.processCheckout(a);
-						} else if (i == 2) {
-							notFound = true;
-						} else {
-							Console.displayUserMenu();
-						}
-					}
-				}
-			}
-			if(notFound){
-				System.out.println("No Results");
-			}
+    public boolean removeDocument(Document doc) {
+        return documents.remove(doc);
+    }
 
-			if(LibrarySystem.getInstance().getActiveUser() == null){
-				System.out.println("Select an option: \n" +
-					"1. Exit Search");
-				i = InputValidator.validate(1);
-				if(i == 1){
-					Console.displayGuestMenu();
-				}
-			}
-		}
-		else{
-			System.out.println("You are trying to search by author: " + query);
-		}
+    public void findDocumentWithQuery(int type, String query) {
+        // do stuff with query to find document
+        boolean notFound = true;
+        int i = 0;
+        Scanner in = new Scanner(System.in);
 
-	}
-	public void displayDocument(Document doc){
-		System.out.println(doc.getTitle() + "     " + doc.getAuthor() + "     " + doc.getNumberOfCopies());
-	}
-	public void saveData(){
+        if (type == 1) {
+            System.out.println("SEARCH RESULTS for " + query);
+            for (Document a : documents
+                    ) {
+                if (a.getTitle().equalsIgnoreCase(query)) {
+                    displayDocument(a);
+                    notFound = false;
+                    if (LibrarySystem.getInstance().getActiveUser() != null) {
+                        System.out.println("Select an option: \n" +
+                                "1. Checkout Document\n" +
+                                "2. Not what I'm looking for. Continue Search\n" +
+                                "3. Exit Search");
+                        i = InputValidator.validate(3);
+
+                        if (i == 1) {
+                            LibrarianUI.processCheckout(a);
+                            break;
+                        } else if (i == 2) {
+                            notFound = true;
+                        } else {
+                            Console.displayUserMenu();
+                        }
+                    }
+                }
+            }
+            if (notFound) {
+                System.out.println("No Results");
+            }
+
+            if (LibrarySystem.getInstance().getActiveUser() == null) {
+                System.out.println("Select an option: \n" +
+                        "1. Exit Search");
+                i = InputValidator.validate(1);
+                if (i == 1) {
+                    Console.displayGuestMenu();
+                }
+            }
+        } else {
+            System.out.println("SEARCH RESULTS for " + query);
+            for (Document a : documents
+                    ) {
+                if (a.getAuthor().equalsIgnoreCase(query)) {
+                    displayDocument(a);
+                    notFound = false;
+                    if (LibrarySystem.getInstance().getActiveUser() != null) {
+                        System.out.println("Select an option: \n" +
+                                "1. Checkout Document\n" +
+                                "2. Not what I'm looking for. Continue Search\n" +
+                                "3. Exit Search");
+                        i = InputValidator.validate(3);
+
+                        if (i == 1) {
+                            LibrarianUI.processCheckout(a);
+                            break;
+                        } else if (i == 2) {
+                            notFound = true;
+                        } else {
+                            Console.displayUserMenu();
+                        }
+                    }
+                }
+            }
+            if (notFound) {
+                System.out.println("No Results");
+            }
+
+            if (LibrarySystem.getInstance().getActiveUser() == null) {
+                System.out.println("Select an option: \n" +
+                        "1. Exit Search");
+                i = InputValidator.validate(1);
+                if (i == 1) {
+                    Console.displayGuestMenu();
+                }
+            }
+        }
 
     }
 
-	public void loadData() {
+    public void displayDocument(Document doc) {
+        System.out.println(doc.getTitle() + "     " + doc.getAuthor() + "     " + doc.getNumberOfCopies());
+    }
+
+    public void saveData() {
+        try {
+
+            File bookFile = new File("books.txt");
+            bookFile.createNewFile(); // if file already exists, will do nothing
+            File journalFile = new File("journals.txt");
+            journalFile.createNewFile(); // if file already exists will do nothing
+            File conferenceFile = new File("conferences.txt");
+            conferenceFile.createNewFile(); // if file already exists will do nothing
+            FileOutputStream fos = new FileOutputStream(bookFile, false);
+            FileOutputStream jos = new FileOutputStream(journalFile, false);
+            FileOutputStream cos = new FileOutputStream(conferenceFile, false);
+
+            for (Document doc : documents) {
+
+                Document returned = doc;
+                if (doc instanceof ConferenceProceeding) {
+                    byte[] conferenceBytes = doc.toString().getBytes();
+                    cos.write(conferenceBytes);
+                }
+                else if (doc instanceof Book) {
+                    byte[] bookBytes = doc.toString().getBytes();
+                    fos.write(bookBytes);
+                }
+                else if(doc instanceof Journal) {
+                    byte[] journalBytes = doc.toString().getBytes();
+                    jos.write(journalBytes);
+                }
+
+            }
+            fos.close();
+            jos.close();
+            cos.close();
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File Not Found.");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void loadData() {
 
         // LOAD BOOK DATA ----------------------------------------------------------------------------------------------
         try {
@@ -104,6 +179,7 @@ public class DocumentDirectory{
                 String[] tokenize = fileRead.split("\\t");
 
                 String tempISBN = tokenize[0];
+                System.out.println(tempISBN);
                 String tempTitle = tokenize[1];
                 String tempDate = tokenize[2];
                 String tempPublisher = tokenize[3];
@@ -118,7 +194,7 @@ public class DocumentDirectory{
             br.close();
 
         } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found");
+            System.out.println("File not found. No book data was found.");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -134,6 +210,7 @@ public class DocumentDirectory{
             while (fileRead != null) {
                 String[] tokenize = fileRead.split("\\t");
                 String tempTitle = tokenize[0];
+                System.out.println(tempTitle);
                 String tempDate = tokenize[1];
                 String tempPublisher = tokenize[2];
                 int tempNumCopies = Integer.parseInt(tokenize[3]);
@@ -153,13 +230,50 @@ public class DocumentDirectory{
                     temp.getJournalArticles().add(new JournalArticle(temp, article));
                     //System.out.println("Article added.");
                 }
+                getDocuments().add(temp);
+
+
                 fileRead = br.readLine();
             }
             br.close();
         } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found");
+            System.out.println("File not found, no journal data was loaded.");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        // LOAD CONFERENCE DATA ----------------------------------------------------------------------------------------
+        try {
+        // Create Buffered Reader object instance with a FileReader
+        BufferedReader br = new BufferedReader(new FileReader("conferences.txt"));
+        // Read the first line from text file
+        String fileRead = br.readLine();
+        // Loop until all lines are read
+        while (fileRead != null) {
+            // Use String.split to load a String array with values from each line of
+            // the file, using tabs as a delimiter
+            String[] tokenize = fileRead.split("\\t");
+
+            String location = tokenize[0];
+            System.out.println(location);
+            String date = tokenize[1];
+            String isbn = tokenize[2];
+            String title = tokenize[3];
+            String publishdate = tokenize[4];
+            String publisher = tokenize[5];
+            int num = Integer.parseInt(tokenize[6]);
+            String author = tokenize[7];
+
+            ConferenceProceeding temp = new ConferenceProceeding(location, date, isbn, title, publishdate, publisher, num, author);
+            getDocuments().add(temp);
+
+            fileRead = br.readLine();
+        }
+        br.close();
+
+    } catch (FileNotFoundException fnfe) {
+        System.out.println("File not found. No book data was found.");
+    } catch (IOException ioe) {
+        ioe.printStackTrace();
+    }
     }
 }
