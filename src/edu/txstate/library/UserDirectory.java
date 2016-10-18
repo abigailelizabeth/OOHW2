@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class UserDirectory{
 	//private static final String SAVE_FILENAME = "user_directory.txt";
@@ -19,7 +18,6 @@ public class UserDirectory{
 //	Iterator<User> usr = users.iterator();
 	
 	private UserDirectory (){
-		System.out.println("I am a UserDirectory Instance.");
 		//ensure class has one instance
 	}
 	
@@ -45,43 +43,51 @@ public class UserDirectory{
         try{
             // Create Buffered Reader object instance with a FileReader
             BufferedReader br = new BufferedReader(new FileReader("users.txt"));
-            // Read the first line from text file
-            String fileRead = br.readLine();
-            // Loop until all lines are read
-            while (fileRead != null){
-                // Use String.split to load a String array with values from each line of
-                // the file, using whitespace as delimiter
-                String[] tokenize = fileRead.split("\\s");
-
-                // Create temp variables for the data types
-                String tempfName = tokenize[0];
-                String templName = tokenize[1];
-                String tempID    = tokenize[2];
-                String tempType  = tokenize[3];
-
-                System.out.println("ID DETECTED: " + tempID);
-                // Create temporary instances of User object
-                if(tempType.equals("student")){
-                    //Add user to UserDirectory arrayList
-                    addUser(new StudentUser(tempfName, templName, tempID));
-                }
-                else{
-                    addUser(new FacultyUser(tempfName, templName, tempID));
-                }
-                fileRead = br.readLine();
+            if (br.readLine() == null) { // Check if input file is empty
+                System.out.println("The input file \"users.txt\" is empty. No Users loaded.");
             }
-            // Close file stream
-            br.close();
+            else {
+                // Read the first line from text file
+                String fileRead = br.readLine();
+                // Loop until all lines are read
+                while (fileRead != null) {
+                    // Use String.split to load a String array with values from each line of
+                    // the file, using whitespace as delimiter
 
+                    String[] tokenize = fileRead.split("\\s");
+                    if(tokenize.length != 4){
+                        System.out.println("document \"users.txt\" is formatted incorrectly. Fix file format.");
+                        br.readLine();
+                    }
+                    else if(tokenize.length == 4){
+                        // Create temp variables for the data types
+                        String tempfName = tokenize[0];
+                        String templName = tokenize[1];
+                        String tempID = tokenize[2];
+                        String tempType = tokenize[3];
+
+                        // Create temporary instances of User object
+                        if (tempType.equals("student")) {
+                            //Add user to UserDirectory arrayList
+                            addUser(new StudentUser(tempfName, templName, tempID));
+                        } else {
+                            addUser(new FacultyUser(tempfName, templName, tempID));
+                        }
+                        fileRead = br.readLine();
+                    }
+                }
+                // Close file stream
+                br.close();
+            }
         } catch (FileNotFoundException fnfe){
             System.out.println("File not found");
         } catch (IOException ioe){
             ioe.printStackTrace();
         }
         // Display list of users
-        for (User user : users){
-            System.out.println(user.getFullName());
-        }
+//        for (User user : users){
+//            System.out.println(user.getFullName());
+//        }
     }
     //SAVE USERS TO "users.txt"
     public void saveData(){

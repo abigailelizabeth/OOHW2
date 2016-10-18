@@ -15,7 +15,6 @@ public class DocumentDirectory {
     private static ArrayList<Document> documents = new ArrayList<Document>();
 
     private DocumentDirectory() {
-        System.out.println("I am a DocumentDirectory Instance. ");
         // ensure class has one instance
     }
 
@@ -171,33 +170,41 @@ public class DocumentDirectory {
             // Create Buffered Reader object instance with a FileReader
             BufferedReader br = new BufferedReader(new FileReader("books.txt"));
             // Read the first line from text file
-            String fileRead = br.readLine();
-            // Loop until all lines are read
-            while (fileRead != null) {
-                // Use String.split to load a String array with values from each line of
-                // the file, using tabs as a delimiter
-                String[] tokenize = fileRead.split("\\t");
-
-                String tempISBN = tokenize[0];
-                System.out.println(tempISBN);
-                String tempTitle = tokenize[1];
-                String tempDate = tokenize[2];
-                String tempPublisher = tokenize[3];
-                int tempNumCopies = Integer.parseInt(tokenize[4]);
-                String tempAuthor = tokenize[5];
-
-                Book temp = new Book(tempISBN, tempTitle, tempDate, tempPublisher, tempNumCopies, tempAuthor);
-                getDocuments().add(temp);
-
-                fileRead = br.readLine();
+            if (br.readLine() == null) { // Check if input file is empty
+                System.out.println("The input file \"books.txt\" is empty. No Book Documents loaded.");
             }
-            br.close();
+            else {
+                String fileRead = br.readLine();
+                // Loop until all lines are read
+                while (fileRead != null) {
+                    // Use String.split to load a String array with values from each line of
+                    // the file, using tabs as a delimiter
+                    String[] tokenize = fileRead.split("\\t");
+                    if (tokenize.length != 6) {
+                        fileRead = br.readLine();
 
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found. No book data was found.");
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+                    } else if (tokenize.length == 6) {
+                        String tempISBN = tokenize[0];
+                        String tempTitle = tokenize[1];
+                        String tempDate = tokenize[2];
+                        String tempPublisher = tokenize[3];
+                        int tempNumCopies = Integer.parseInt(tokenize[4]);
+                        String tempAuthor = tokenize[5];
+
+                        Book temp = new Book(tempISBN, tempTitle, tempDate, tempPublisher, tempNumCopies, tempAuthor);
+                        getDocuments().add(temp);
+
+                        fileRead = br.readLine();
+                    }
+                }
+                br.close();
+            }
+            } catch(FileNotFoundException fnfe){
+                System.out.println("File not found. No book data was found.");
+            } catch(IOException ioe){
+                ioe.printStackTrace();
+            }
+
 //          TO TEST LOADING CORRECTNESS
 //        for (Document doc : documents) {
 //            System.out.println("Title: " + doc.getTitle() + "\nAuthor: " + doc.getAuthor());
@@ -206,36 +213,43 @@ public class DocumentDirectory {
         // LOAD JOURNAL DATA -------------------------------------------------------------------------------------------
         try {
             BufferedReader br = new BufferedReader(new FileReader("journals.txt"));
-            String fileRead = br.readLine();
-            while (fileRead != null) {
-                String[] tokenize = fileRead.split("\\t");
-                String tempTitle = tokenize[0];
-                System.out.println(tempTitle);
-                String tempDate = tokenize[1];
-                String tempPublisher = tokenize[2];
-                int tempNumCopies = Integer.parseInt(tokenize[3]);
-                int tempVol = Integer.parseInt(tokenize[4]);
-                int tempNum = Integer.parseInt(tokenize[5]);
-                String tempAuthor = tokenize[6];
-                String tempArticles = tokenize[7];
-
-                // Create Journal object
-                Journal temp = new Journal(tempTitle, tempDate, tempPublisher, tempNumCopies, tempVol, tempNum, tempAuthor);
-
-                //split the articles in tempArticles into separate tokens
-                String[] articleArray = tempArticles.split("\\s*,\\s*");
-
-                // add articles to JournalArticles ArrayList
-                for (String article : articleArray) {
-                    temp.getJournalArticles().add(new JournalArticle(temp, article));
-                    //System.out.println("Article added.");
-                }
-                getDocuments().add(temp);
-
-
-                fileRead = br.readLine();
+            if (br.readLine() == null) { // Check if input file is empty
+                System.out.println("The input file \"journals.txt\" is empty. No Journal Documents loaded.");
             }
-            br.close();
+            else {
+                String fileRead = br.readLine();
+                while (fileRead != null) {
+                    String[] tokenize = fileRead.split("\\t");
+                    if(tokenize.length != 8){
+                        System.out.println("Document \"journals.txt\" is formatted incorrectly. Fix file format.");
+                        fileRead = br.readLine();
+                    }
+                    else if (tokenize.length == 8) {
+                        String tempTitle = tokenize[0];
+                        String tempDate = tokenize[1];
+                        String tempPublisher = tokenize[2];
+                        int tempNumCopies = Integer.parseInt(tokenize[3]);
+                        int tempVol = Integer.parseInt(tokenize[4]);
+                        int tempNum = Integer.parseInt(tokenize[5]);
+                        String tempAuthor = tokenize[6];
+                        String tempArticles = tokenize[7];
+
+                        // Create Journal object
+                        Journal temp = new Journal(tempTitle, tempDate, tempPublisher, tempNumCopies, tempVol, tempNum, tempAuthor);
+
+                        //split the articles in tempArticles into separate tokens
+                        String[] articleArray = tempArticles.split("\\s*,\\s*");
+
+                        // add articles to JournalArticles ArrayList
+                        for (String article : articleArray) {
+                            temp.getJournalArticles().add(new JournalArticle(temp, article));
+                        }
+                        getDocuments().add(temp);
+                        fileRead = br.readLine();
+                    }
+                }
+                br.close();
+            }
         } catch (FileNotFoundException fnfe) {
             System.out.println("File not found, no journal data was loaded.");
         } catch (IOException ioe) {
@@ -245,35 +259,43 @@ public class DocumentDirectory {
         try {
         // Create Buffered Reader object instance with a FileReader
         BufferedReader br = new BufferedReader(new FileReader("conferences.txt"));
-        // Read the first line from text file
-        String fileRead = br.readLine();
-        // Loop until all lines are read
-        while (fileRead != null) {
-            // Use String.split to load a String array with values from each line of
-            // the file, using tabs as a delimiter
-            String[] tokenize = fileRead.split("\\t");
+            if (br.readLine() == null) { // Check if input file is empty
+                System.out.println("The input file \"conferences.txt\" is empty. No Conference Documents loaded.");
+            }
+            else {
+                // Read the first line from text file
+                String fileRead = br.readLine();
+                // Loop until all lines are read
+                while (fileRead != null) {
+                    // Use String.split to load a String array with values from each line of
+                    // the file, using tabs as a delimiter
+                    String[] tokenize = fileRead.split("\\t");
+                    if (tokenize.length != 8) {
+                        System.out.println("Document \"conferences.txt\" is formatted incorrectly. Fix file format.");
+                        fileRead = br.readLine();
+                    } else if (tokenize.length == 8) {
 
-            String location = tokenize[0];
-            System.out.println(location);
-            String date = tokenize[1];
-            String isbn = tokenize[2];
-            String title = tokenize[3];
-            String publishdate = tokenize[4];
-            String publisher = tokenize[5];
-            int num = Integer.parseInt(tokenize[6]);
-            String author = tokenize[7];
+                        String location = tokenize[0];
+                        String date = tokenize[1];
+                        String isbn = tokenize[2];
+                        String title = tokenize[3];
+                        String publishdate = tokenize[4];
+                        String publisher = tokenize[5];
+                        int num = Integer.parseInt(tokenize[6]);
+                        String author = tokenize[7];
 
-            ConferenceProceeding temp = new ConferenceProceeding(location, date, isbn, title, publishdate, publisher, num, author);
-            getDocuments().add(temp);
+                        ConferenceProceeding temp = new ConferenceProceeding(location, date, isbn, title, publishdate, publisher, num, author);
+                        getDocuments().add(temp);
 
-            fileRead = br.readLine();
-        }
-        br.close();
-
-    } catch (FileNotFoundException fnfe) {
+                        fileRead = br.readLine();
+                    }
+                }
+                br.close();
+            }
+        } catch (FileNotFoundException fnfe) {
         System.out.println("File not found. No book data was found.");
-    } catch (IOException ioe) {
+        } catch (IOException ioe) {
         ioe.printStackTrace();
-    }
+        }
     }
 }
